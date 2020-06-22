@@ -1,0 +1,44 @@
+network:
+ seed:
+  - "/ip4/192.168.163.134/tcp/8880/ipfs/12D3KooWB78qtKkxWcqpLsX1cQ7sgD23gnauzupkrrNcMACyjegf"
+ listen:
+  - "0.0.0.0:8880"
+ private_key: "conf/network/key"
+ network_id: 1
+ stream_limits:
+ reserved_stream_limits:
+chain:
+ #datadir: "data"
+ #keydir: "keystore"
+ chain_id: 23
+ coinbase:
+ genesis: "conf/genesis.yaml"
+log:
+ log_level: "debug"
+ log_file: "logs"
+ log_rotationTime: 3600
+ log_age: 86400
+rpc:
+  rpc_listen:
+  - "127.0.0.1:8518"
+  http_listen:
+  - "127.0.0.1:8519"
+  http_module:
+  - "admin"
+  - "api"
+  http_cors:
+  - "*"
+  http_limits: 128
+#metrics config
+stats:
+ enable_metrics: false
+ influxdb:
+   host: "http://192.168.21.8:8096"
+   db: "cloudcard"
+   user: "admin"
+   password: "admin"
+monitor:
+ pprof:
+  http_listen: "0.0.0.0:8888"
+  cpuprofile: "cpuprofile.tmp"
+  memprofile: "memprofile.tmp"

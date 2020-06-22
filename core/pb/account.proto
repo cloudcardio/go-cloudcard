@@ -1,0 +1,52 @@
+// Copyright (C) 2018 go-cloudcard authors
+//
+// This file is part of the go-cloudcard library.
+//
+// the go-cloudcard library is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// the go-cloudcard library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with the go-cloudcard library.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+syntax = "proto3";
+
+package corepb;
+
+message ContractAuthority{
+    bytes address = 1;
+    string method = 2;
+    string access_type = 3;
+}
+
+message Permission{
+    string auth_category = 1;
+    repeated bytes auth_message = 2;
+}
+
+message Contract {
+    bytes address = 1;
+    repeated string methods = 2;
+    string version = 3;
+}
+
+message Account{
+    bytes    address = 1;
+    bytes    balance = 2;
+    bytes    frozen_fund = 3;
+    bytes    pledge_fund = 4;
+    uint64   nonce = 5;
+    uint32   do_evils = 6;
+    bytes    vars_hash = 7;
+    uint32   products = 8;
+    bytes    credit_index = 9;
+
+    repeated Permission permissions = 10;
+}

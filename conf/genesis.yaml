@@ -1,0 +1,49 @@
+chain_id: 23
+
+super_nodes:
+  - address: "C1115mvVghjR2W9LNTHZ7PhYKcTh24jetcWPq"
+    value: "8000000000000"
+  - address: "C1119spUZh2misJqHWdmmBE69q746qf4mb2Za"
+    value: "8000000000000"
+  - address: "C1113PLkJ96RGvrDoMczZFEL9YcwNKoLVjnQR"
+    value: "8000000000000"
+  - address: "C1113urxukDbAgshEtbA1uUQobtqsHS5CGKgr"
+    value: "8000000000000"
+  - address: "C111LtJLx9VvbB56pLJTySyj5xbREKgwe2mPr"
+    value: "8000000000000"
+  - address: "C111QEmYVbNToH1g9GuDtncqiJqa3TTM1gmCv"
+    value: "8000000000000"
+  - address: "C111GTipPVguDjzLJi5M1sVNXDa6g5kqHKEtR"
+    value: "8000000000000"
+
+standby_nodes:
+  - address: "C11123XcqLiX3AUC4zRjyr9Bnhg9L9Zx5U866"
+    value: "8000000000000"
+  - address: "C11144brgYaHSqP6K5EYUSMj8rbKTZMJAJbdd"
+    value: "8000000000000"
+  - address: "C1113dUgyJE5m7V2yUKNKsPdCSkut5qaxGhvQ"
+    value: "8000000000000"
+  - address: "C111KSg8Rcv4Ha22i2Ma73uaN6qJZ4aBqzpWY"
+    value: "8000000000000"
+  - address: "C111KtXkABWEURHTYiV53eK2fCWymifKcMfrg"
+    value: "8000000000000"
+  - address: "C111JyiZQW9N6s2Xhv89uEDvK4BmFcfGZMXPf"
+    value: "8000000000000"
+  - address: "C111JHnWagxQqsWgc57dDK94AMtgnCS3o9Gqb"
+    value: "8000000000000"
+
+foundation:
+  address: "C111EH4eWSoyedthp96FmGmbGK85SwzaU7UDR"
+  value: "8000000000000"
+founding_team:
+  address: "C111ESWEjtXGzb5z7gmtphrTqCaQVUVpJdfsT"
+  value: "8000000000000"
+node_deployment:
+  address: "C111Fz5hiDDgZ4mJZB9BxT72ffFjUCduBPbZq"
+  value: "8000000000000"
+ecological_construction:
+  address: "C111BDqzbRby2sWSKLva75hhpybWRbfHN1VNw"
+  value: "8000000000000"
+founding_community:
+  address: "C111FgcZN2D6w6KHMrghidRQrL1umQ6Q7n7om"
+  value: "8000000000000"

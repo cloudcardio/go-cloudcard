@@ -1,0 +1,344 @@
+// Copyright (C) 2018 go-cloudcard authors
+//
+// This file is part of the go-cloudcard library.
+//
+// the go-cloudcard library is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// the go-cloudcard library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with the go-cloudcard library.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+//The protobuf golang code is generated with protoc-gen-gogo v1.0.0
+
+syntax = "proto3";
+
+package rpcpb;
+
+import "rpc.proto";
+import "google/api/annotations.proto";
+
+service ApiService {
+    // get pending transactions by page
+    rpc GetPendingTransactionsByPage (GetPendingTransactionsByPageRequest) returns (PendingTransaction) {
+        option (google.api.http) = {
+            post: "/v1/api/GetPendingTransactionsByPage"
+            body:"*"
+        };
+    }
+
+    // get pending transactions size
+    rpc GetPendingTransactionsSize (NonParamsRequest) returns (PendingTransactionsSize) {
+        option (google.api.http) = {
+            get: "/v1/api/GetPendingTransactionsSize"
+        };
+    }
+
+    // get block by hash
+    rpc GetBlockByHash (BlockHashAndFull) returns (BlockResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/block/hash"
+            body:"*"
+        };
+    }
+
+    // get best block hash
+    rpc GetBestBlockHash (NonParamsRequest) returns (BlockHash) {
+        option (google.api.http) = {
+            get: "/v1/api/block/bestHash"
+        };
+    }
+
+    // get max block height
+    rpc GetMaxHeight (NonParamsRequest) returns (BlockHeight) {
+        option (google.api.http) = {
+            get: "/v1/api/block/maxHeight"
+        };
+    }
+
+    // get best block by height
+    rpc GetBestBlockByHeight (BlockHeightAndFull) returns (BlockResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/block/GetBestBlockByHeight"
+            body:"*"
+        };
+    }
+
+    // get best block by height
+    rpc GetBlocksByHeight (BlockHeightAndFull) returns (BlockListResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/block/GetBlocksByHeight"
+            body:"*"
+        };
+    }
+
+    // get account info by address
+    rpc GetAccount (Address) returns (AccountInfo) {
+        option (google.api.http) = {
+            post: "/v1/api/account/info"
+            body:"*"
+        };
+    }
+
+    // get creditIndex by address
+    rpc GetCreditIndex (Address) returns (CreditIndexResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/account/creditIndex"
+            body:"*"
+        };
+    }
+
+    // Return the block chain info
+    rpc GetBlockChainInfo (NonParamsRequest) returns (BlockChainInfo) {
+        option (google.api.http) = {
+            get: "/v1/api/blockChainInfo"
+        };
+    }
+
+    // Return active count of the node
+    rpc GetActiveCount (NonParamsRequest) returns (ActiveCountResponse) {
+        option (google.api.http) = {
+            get: "/v1/api/activeCount"
+        };
+    }
+
+    // Return net version
+    rpc GetNetVersion (NonParamsRequest) returns (NetVersion) {
+        option (google.api.http) = {
+            get: "/v1/api/netVersion"
+        };
+    }
+
+    // Return the p2p node info.
+    rpc NodeInfo (NonParamsRequest) returns (NodeInfoResponse) {
+        option (google.api.http) = {
+            get: "/v1/api/nodeInfo"
+        };
+    }
+
+    //return transaction
+    rpc GetTransactionByContractAddress (ContractAddressRequest) returns (TransactionReceipt) {
+        option (google.api.http) = {
+            post: "/v1/api/getTransactionByContractAddress"
+            body: "*"
+        };
+    }
+
+    //return transaction
+    rpc GetTransactionByHash (TransactionHash) returns (TransactionReceipt) {
+        option (google.api.http) = {
+            post: "/v1/api/getTransactionByHash"
+            body: "*"
+        };
+    }
+
+    //return balance
+    rpc GetBalance (Address) returns (BalanceResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/balance"
+            body: "*"
+        };
+    }
+
+    //send sign tx
+    rpc SendSignedTransaction (Transaction) returns (BoolResponse) {
+        option (google.api.http) = {
+            post: "/v1/api/tx/sendSignedTx"
+            body: "*"
+        };
+    }
+}
+
+message ContractAddressRequest {
+    string contract_address = 1;
+}
+
+message TransactionReceipt {
+    //hex tx hash
+    string hash = 1;
+    //hex block hash
+    string block_hash = 2;
+    //The height of the block where the tx is
+    uint64 block_height = 3;
+    //Hex string of the sender account addresss.
+    string from = 4;
+    //Hex string of the receiver account addresss.
+    string to = 5;
+    //Amount of value sending with this transaction.
+    string value = 6;
+    //transaction fee
+    string fee = 7;
+    //Transaction nonce.
+    uint64 nonce = 8;
+    //tx tpye
+    string type = 9;
+    //hex data
+    string data = 10;
+    //tx priority
+    uint32 priority = 11;
+    //timestamp
+    int64 timestamp = 12;
+    //id of the chain
+    uint32 chain_id = 13;
+    //signature of the from address
+    string signature = 14;
+    //tx status {1:SUCCESS、0：FAILED}
+    uint32 status = 15;
+    //tx error_message
+    string error_message = 16;
+    //The contract address created, if the transaction was a contract creation, otherwise null.
+    string contract_address = 17;
+}
+
+message GetPendingTransactionsByPageRequest {
+    uint32 page = 1;
+    uint32 limit = 2;
+}
+
+message PendingTransaction {
+    repeated Transaction txs = 1;
+}
+
+message Transaction {
+    //hex tx hash
+    string hash = 1;
+    //Hex string of the sender account addresss.
+    string from = 2;
+    //Hex string of the receiver account addresss.
+    string to = 3;
+    //Amount of value sending with this transaction.
+    string value = 4;
+    //transaction fee
+    string fee = 5;
+    //Transaction nonce.
+    uint64 nonce = 6;
+    //tx tpye
+    string type = 7;
+    //hex data
+    string data = 8;
+    //tx priority
+    uint32 priority = 9;
+    //timestamp
+    int64 timestamp = 10;
+    //id of the chain
+    uint32 chain_id = 11;
+    //hex string of public key
+    string pub_key = 12;
+    //signature of the from address
+    string signature = 13;
+}
+
+message PendingTransactionsSize {
+    uint64 size = 1;
+}
+
+message BlockHashAndFull {
+    string hash = 1;
+    bool full_fill_transaction = 2;
+}
+
+message BlockHeightAndFull {
+    uint64 height = 1;
+    bool full_fill_transaction = 2;
+}
+
+message BlockHash {
+    string hash = 1;
+}
+
+message BlockHeight {
+    uint64 height = 1;
+}
+
+message BlockListResponse {
+    repeated BlockResponse blocks = 1;
+}
+
+message BlockResponse {
+    uint32 chain_id = 1;
+    string hash = 2;
+    bool best_block = 3;
+    string witness_reward = 4;
+    string coinbase = 5;
+    string state_root = 6;
+    string txs_root = 7;
+    string parent_hash = 8;
+    uint64 height = 9;
+    int64 timestamp = 10;
+    string extra = 11;
+    repeated Transaction txs = 12;
+}
+
+message AccountInfo {
+    string address = 1;
+    string balance = 2;
+    string frozen_fund = 3;
+    string pledge_fund = 4;
+    uint64 nonce = 5;
+    string variables_hash = 6;
+    string credit_index = 7;
+    repeated Permission permissions = 8;
+}
+
+message Permission {
+    string auth_category = 1;
+    repeated string auth_message = 2;
+}
+
+message CreditIndexResponse {
+    string credit_index = 1;
+}
+
+message BlockChainInfo {
+    //The id of the chain in which the node is located
+    uint32 chain_id = 1;
+    //tail block height
+    uint64 tail_height = 2;
+    //confirm block height
+    uint64 confirm_height = 3;
+    //best block hash
+    string best_block_hash = 4;
+    //pending transaction size
+    uint64 pending_tx_size = 5;
+}
+
+message NodeInfoResponse {
+    //the id of the current node
+    string id = 1;
+    //coinbase address
+    string coinbase = 2;
+    //tail block height
+    uint64 tail_height = 3;
+    //confirm block height
+    uint64 confirm_height = 4;
+    //The id of the chain in which the node is located
+    uint32 chain_id = 5;
+    // the node synchronized status.
+    bool synchronized = 6;
+    // the node route table bucket size.
+    int32 bucket_size = 7;
+    //net version info
+    NetVersion net_version = 8;
+    //active count
+    uint32 active_count = 9;
+    //The peers to which this node is connected
+    repeated string peer_ids = 10;
+}
+
+message NetVersion {
+    uint32 network_id = 1;
+    string client_version = 2;
+    string protocol_version = 3;
+    repeated string listen = 4;
+}
+
+message ActiveCountResponse {
+    uint32 active_count = 1;
+}

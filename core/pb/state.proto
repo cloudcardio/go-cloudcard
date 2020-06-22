@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package corepb;
+
+message WitnessState {
+    uint64 term_id = 1;
+    repeated Group witnesses = 2;
+}
+
+message Group {
+    string master = 1;
+    repeated string members = 2;
+}

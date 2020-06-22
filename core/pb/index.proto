@@ -1,0 +1,29 @@
+syntax = "proto3";
+package corepb;
+
+
+message ContractSet {
+    uint64 normal_cons        = 1;
+    uint64 template_cons      = 2;
+    uint64 template_cons_refs = 3;
+}
+
+message TransactionSet {
+    uint64 normal_txs   = 1;
+    uint64 contract_txs = 2;
+ }
+
+ message HandledData {
+    int32          prev_round_productions = 1;
+    uint64         winningTimes           = 2;
+    ContractSet    handled_contracts      = 3;
+    TransactionSet handled_txs            = 4;
+}
+
+message Voter {
+    bytes       address      = 1;
+    HandledData handed_data  = 2;
+    bytes       amount       = 3;
+	bytes       credit_index = 4;
+}
+

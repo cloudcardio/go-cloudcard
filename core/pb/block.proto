@@ -1,0 +1,125 @@
+// Copyright (C) 2018 go-cloudcard authors
+//
+// This file is part of the go-cloudcard library.
+//
+// the go-cloudcard library is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// the go-cloudcard library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with the go-cloudcard library.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+syntax = "proto3";
+
+package corepb;
+
+message Data {
+    string type = 1;
+    bytes msg = 2;
+}
+
+message File {
+    string name = 1;
+    bytes content = 2;
+    string bind_key = 3;
+    uint64 size = 4;
+    StorageState state = 5;
+}
+
+message StorageState {
+    string mode = 1;
+    bytes result = 2;
+    bytes extra_data = 3;
+}
+
+message ComplexData {
+    repeated File flies = 1;
+    Data data = 2;
+}
+
+message Signature {
+    bytes signer = 1;
+    bytes data = 2;
+}
+
+message Transaction {
+    bytes hash = 1;
+    bytes from = 2;
+    bytes to = 3;
+    bytes value = 4;
+    uint64 nonce = 5;
+    uint32 chain_id = 6;
+    bytes fee = 7;
+    int64 timestamp = 8;
+    Data data = 9;
+    uint32 priority = 10;
+    Signature sign = 11;
+}
+
+message PsecData {
+    int64 term = 1;
+    int64 timestamp = 2;
+}
+
+message BlockHeader {
+    bytes hash = 1;
+    bytes parent_hash = 2;
+    bytes coinbase = 3;
+    int64 timestamp = 4;
+    uint32 chain_id = 5;
+    uint64 height = 6;
+    uint64 term_id = 7;
+    bytes state_root = 8;
+    bytes txs_root = 9;
+    bytes witness_root = 10;
+    Signature sign = 11;
+    bytes extra = 12;
+}
+
+message Block {
+    bytes hash = 1;
+    BlockHeader header = 2;
+    repeated Transaction body = 3;
+}
+
+message DownloadBlock {
+    bytes hash = 1;
+    Signature sign = 2;
+}
+
+message Promise {
+    uint64 proposal_id = 1;
+    Propose max_accepted_propose = 2;
+}
+
+message Propose {
+    uint64 num = 1;
+    bytes value = 2;
+    Signature sign = 3;
+}
+
+
+message PreprepareMsg{
+    int64 timestamp = 1;
+    uint32 type = 2;
+    string view_id = 3;
+    uint64 seq_id = 4;
+    bytes hash = 5;
+    Block block = 6;
+    Signature sign = 7;
+}
+
+message VoteMsg {
+    uint32 type = 1;
+    string view_id = 2;
+    uint64 seq_id = 3;
+    bytes hash = 4;
+    Signature sign = 5;
+}

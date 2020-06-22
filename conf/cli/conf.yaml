@@ -1,0 +1,14 @@
+rpc:
+  rpc_listen:
+    - "127.0.0.1:8518"
+    - "127.0.0.1:8577"
+    - "127.0.0.1:8578"
+  http_listen:
+    - "127.0.0.1:8519"
+    - "127.0.0.1:8520"
+    - "127.0.0.1:8519"
+database:
+  db_type: "levelDB"
+  db_dir: "/cmd/db"
+chain:
+  keydir: "/cmd/keydir"
